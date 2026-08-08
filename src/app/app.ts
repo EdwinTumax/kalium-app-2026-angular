@@ -8,5 +8,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('kalum-app');
+  protected readonly title = signal('Kalum Page v1.0.0');
 }

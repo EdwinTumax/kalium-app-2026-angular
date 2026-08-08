@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+.text-color-kalum {
+    color: white;
+}
+
+.profile-card {
+    text-align: center;
+    padding: 0 20px 20px 20px;
+}
+
+.header-profile-card {
+    margin-top: 20px;
+}
+
+
+.kalum-toolbar {
+    background: var(--mat-sys-primary) !important;
+    color: var(--mat-sys-on-primary) !important;
+}
+
+.kalum-toolbar button,
+.kalum-toolbar mat-icon {
+    color: var(--mat-sys-on-primary);
+}
+
+.kalum-container {
+    height: calc(100vh - 64px);
+    background: var(--mat-sys-surface);
+}
+
+.kalum-sidenav {
+    width: 260px;
+    background: var(--mat-sys-surface-container) !important;
+    color: var(--mat-sys-on-surface) !important;
+}
+
+.kalum-content {
+    background: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+}
+
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
