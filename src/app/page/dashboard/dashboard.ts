@@ -35,28 +35,55 @@ export class Dashboard {
   constructor(private formBuidler: FormBuilder) {
     this.formulario = this.formBuidler.group({
       valorUno: [0, Validators.required],
-      valorDos: [0, Validators.required]
+      valorDos: [0, Validators.required],
+      valorTres: [0, Validators.required],
     });
   }
 
+
   onSubmit() {
-    if (this.formulario.valid) {
-      let valorUno = this.formulario.get('valorUno')?.value;
-      let valorDos = this.formulario.get('valorDos')?.value;
-      if (Number(valorUno) > Number(valorDos)) {
-        Swal.fire({
-          title: "Operadores Condicionales",
-          text: `El valor ${valorUno} es mayor`,
-          icon: "info"
-        });
-      } else {
-        Swal.fire({
-          title: "Operadores Condicionales",
-          text: `El valor ${valorDos} es mayor `,
-          icon: "info"
-        });
-      }
+
+    function sumar(a:number,b:number) {
+      return a + b;
     }
+
+    const sumarVersion = (a:number, b:number): number => {
+      return a + b;
+    }
+
+    if (this.formulario.valid) {
+      let valorUno = Number(this.formulario.get('valorUno')?.value);
+      let valorDos = Number(this.formulario.get('valorDos')?.value);
+      let valorTres = Number(this.formulario.get('valorTres')?.value);
+      
+      
+      for(let i = valorUno; i <= valorDos; i+=valorTres) {
+        console.log(i);
+      }
+
+      let contador = valorUno;
+      while(contador <= valorDos) {
+        console.log(contador);
+        contador += valorTres;
+      }
+
+      const lenguajes = [".NET","JAVA","PHP","PYTHON"]
+
+      for(const l of lenguajes) {
+        console.log(l);
+      }
+
+      lenguajes.forEach( l => {
+        console.log(l);
+      });
+
+      let resultado = sumar(valorUno,valorDos);
+      Swal.fire(`El resultado es ${resultado}`);
+
+      Swal.fire(`El resultado del arrow Function es ${sumarVersion(valorUno,valorDos)}`);
+
+    } 
+
   }
 
 }
