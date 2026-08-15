@@ -1,1 +1,23 @@
-<p>dashboard works!</p>
+<h2 mat-dialog-title>
+    <p>{{tituloPrincipal}}</p>
+</h2>
+<div class="form-container">
+    <mat-card class="form-card">
+        <form [formGroup]="formulario">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Valor Uno</mat-label>
+                <input matInput formControlName="valorUno">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Valor Dos</mat-label>
+                <input matInput formControlName="valorDos">
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">
+                Evaluar
+            </button>
+        </form>
+    </mat-card>
+</div>
+
+
+
