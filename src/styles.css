@@ -63,3 +63,33 @@
 .full-width {
     width: 100%;
 }
+
+.box {
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+}
+
+.box div {
+    width: 100px;
+    height: 100px;
+}
+
+.kalum-career-card {
+    max-width: 400px;
+    margin: 1%;
+}
+
+.kalum-career-header-image {
+    background-image: url('/images/clave2.png');
+    background-size: cover;
+}
+
+.banner-text {
+    padding: 30px;
+    background-color: #F8B412;
+    text-align: center;
+    color: #303F9F;
+    font-weight: bold;
+    font-size: 15px;
+}

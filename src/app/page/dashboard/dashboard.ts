@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 import { UserService } from '../../services/user-service';
 import { User } from '../../auth/model/user.model';
 import { last } from 'rxjs';
+import { TechnicalCareer } from '../../auth/model/technical-career.model';
+import { TechnicalCareerService } from '../../services/technical-career-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,60 +30,38 @@ import { last } from 'rxjs';
   styleUrl: './dashboard.css',
 })
 
+export class Dashboard implements OnInit {
+  careers: TechnicalCareer[] = [];
 
-export class Dashboard {
+  constructor(private technicalCareersService: TechnicalCareerService) {
 
-  formulario!: FormGroup;
-
-  tituloPrincipal = 'KALUM APP';
-
-  users: User[] = [];
-
-  constructor(private formBuidler: FormBuilder, private userService: UserService) {
-    this.formulario = this.formBuidler.group({
-      valorUno: [0, Validators.required],
-      valorDos: [0, Validators.required],
-      valorTres: [0, Validators.required],
-    });
   }
 
+  async ngOnInit(): Promise<void> {
+    //Promise
+    /*this.technicalCareersService.getTechnicalCareers().then((response) => {
+      this.careers = response;
+    }).catch(error => {
+      Swal.fire({
+        icon: "error",
+        title: "Carreras Técnicas",
+        text: error,
+        footer: "<a href=\"#\">Why do I have this issue?</a>"
+      })
+    });*/
 
-  onSubmit() {
-    this.userService.getUsers().then((response) => {
-      const usuarioNotificados: any[] = [];
-      const promosiones = ['Inscripción gratis', 'Descuento del 20%', 'Primer mes gratis', 'Chumpa de promision', 'Parqueo gratis']
-
-      response.map(user => {
-        //Desestructuracion
-        const { lastname, firstname, email, roles } = user;
-        usuarioNotificados.push({ lastname, firstname, email, roles });
-      });
-
-      // Rest
-      const [primera, segunda, ...resto] = promosiones
-
-      usuarioNotificados.map((user) => {
-        if (user.roles[0] === 'ROLE_STUDENT') {
-          //Spread
-          const mensaje = {
-            ...user,
-            resto
-          }
-          console.log('Enviando notificacion a:');
-          console.log(JSON.stringify(mensaje));
-        } else if (user.roles[0] === 'ROLE_TEACHER') {
-          const mensaje = {
-            ...user,
-            primera,
-            segunda
-          }
-          console.log('Enviando notificacion a:');
-          console.log(JSON.stringify(mensaje));
-        } else {
-          console.log('Sin promocion');
-        }
-      });
-    });
+    // async & await
+    try {
+      this.careers = await this.technicalCareersService.getTechnicalCareers();
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Carreras Técnicas",
+        text: `${error}`,
+        footer: "<a href=\"#\">Why do I have this issue?</a>"
+      }
+      );
+    }
   }
 
 }
