@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import Swal from 'sweetalert2';
 import { UserService } from '../../services/user-service';
 import { User } from '../../auth/model/user.model';
+import { last } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -47,12 +48,40 @@ export class Dashboard {
 
   onSubmit() {
     this.userService.getUsers().then((response) => {
-      this.users = response;
-      this.users.map(user => {
-        const { lastname, firstname, email } = user;
-        console.log(`Enviando notificacion a ${lastname} ${firstname} al correo ${email}`);
+      const usuarioNotificados: any[] = [];
+      const promosiones = ['Inscripción gratis', 'Descuento del 20%', 'Primer mes gratis', 'Chumpa de promision', 'Parqueo gratis']
+
+      response.map(user => {
+        //Desestructuracion
+        const { lastname, firstname, email, roles } = user;
+        usuarioNotificados.push({ lastname, firstname, email, roles });
       });
-    }); 
+
+      // Rest
+      const [primera, segunda, ...resto] = promosiones
+
+      usuarioNotificados.map((user) => {
+        if (user.roles[0] === 'ROLE_STUDENT') {
+          //Spread
+          const mensaje = {
+            ...user,
+            resto
+          }
+          console.log('Enviando notificacion a:');
+          console.log(JSON.stringify(mensaje));
+        } else if (user.roles[0] === 'ROLE_TEACHER') {
+          const mensaje = {
+            ...user,
+            primera,
+            segunda
+          }
+          console.log('Enviando notificacion a:');
+          console.log(JSON.stringify(mensaje));
+        } else {
+          console.log('Sin promocion');
+        }
+      });
+    });
   }
 
 }

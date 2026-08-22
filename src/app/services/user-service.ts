@@ -35,7 +35,7 @@ export class UserService {
             password: 'Inicio.2026',
             email: 'mfuentes@gmail.com',
             identityUser: '3',
-            roles: ['ROLE_ADMIN']
+            roles: ['ROLE_TEACHER']
           },
           {
             lastname: 'Tumax',
