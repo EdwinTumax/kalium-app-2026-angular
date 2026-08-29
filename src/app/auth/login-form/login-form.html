@@ -1,0 +1,23 @@
+<div class="login-container">
+    <mat-card-title style="text-align: center; color: #303F9F;">
+        <img src="images/logotipo.png" alt="Kalum App">
+    </mat-card-title>
+    <mat-card class="login-card">
+        <form [formGroup]="loginForm">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">
+                Login
+            </button>
+            <button mat-raised-button color="primary" (click)="onRegister()">
+                ¿No tienes cuenta? crea una aqui.
+            </button>
+        </form>
+    </mat-card>
+</div>

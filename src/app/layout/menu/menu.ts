@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -21,8 +21,16 @@ export class Menu {
   
   @Output() toggleSidenav = new EventEmitter<void>();
 
+  constructor(private router: Router) {
+    
+  }
+
   onToggleSidenav() {
     this.toggleSidenav.emit();
+  }
+
+  login () {
+    this.router.navigate(['/login']);
   }
 
 }
