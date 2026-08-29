@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Layout } from './layout/layout';
 import { LoginForm } from './auth/login-form/login-form';
+import { RegisterForm } from './auth/register-form/register-form';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,9 @@ export const routes: Routes = [
     },
     {
         path: 'login', component: LoginForm
+    },
+    {
+        path: 'register', component: RegisterForm
     },
     {
         path: '**',
