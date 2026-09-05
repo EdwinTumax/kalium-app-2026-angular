@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Login } from '../model/login.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-login-form',
@@ -26,14 +27,14 @@ export class LoginForm implements OnInit {
   loginForm!: FormGroup;
   login: Login = new Login();
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) {
 
   }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: ['edwintumax', Validators.required],
+      password: ['Inicio.2026', Validators.required]
     });
   }
 
@@ -41,7 +42,14 @@ export class LoginForm implements OnInit {
     if(this.loginForm.valid) {
       this.login.username = this.loginForm.get('username')?.value;
       this.login.password = this.loginForm.get('password')?.value;
-      if(this.login.username === 'etumax' && this.login.password === 'Inicio.2026') {
+      this.authService.login(this.login).subscribe(
+        {next: (response: any) => {
+          console.log(response);
+        }, error: (error: any) => {
+          console.log(error);
+      }});
+
+      /*if(this.login.username === 'etumax' && this.login.password === 'Inicio.2026') {
         Swal.fire({
           title: 'Login',
           text: `Bienvenido al sistema ¡${this.login.username}!`,
@@ -57,7 +65,7 @@ export class LoginForm implements OnInit {
           text: `Username o Password incorrectos, revisar sus credenciales`,
           icon: 'error'
         })
-      }
+      }*/
     }
   }
 
