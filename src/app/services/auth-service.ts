@@ -44,5 +44,43 @@ export class AuthService {
     const httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
     return this.http.post(`${this.host}:${this.port}/kalum-auth/v1/account/login`,login, {headers: httpHeaders});
   }
+
+  saveToken(token: string) : void {
+    this._token = token;
+    localStorage.setItem('token',token);
+  }
   
+  getPayload(token: string) : any {
+    if(token && token != null) {
+     return JSON.parse(atob(token.split('.')[1]))
+    }
+    return null;
+  }
+
+  saveUser(payload: any) : void {
+    this._user = new User();
+    this._user.username = payload.username;
+    this._user.email = payload.email;
+    this._user.roles = payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+    localStorage.setItem('user',JSON.stringify(this._user));
+  }
+
+  logout() : void {
+    this._token = '';
+    this._user == null;
+    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
+
+  isAuthenticated() : boolean {
+    if(this.token != null) {
+      let payload = this.getPayload(this.token);
+      if(payload != null && payload.username && payload.username.length > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }

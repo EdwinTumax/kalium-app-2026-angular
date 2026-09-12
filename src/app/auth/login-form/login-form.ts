@@ -39,33 +39,34 @@ export class LoginForm implements OnInit {
   }
 
   onSubmit() {
-    if(this.loginForm.valid) {
+    if (this.loginForm.valid) {
       this.login.username = this.loginForm.get('username')?.value;
       this.login.password = this.loginForm.get('password')?.value;
       this.authService.login(this.login).subscribe(
-        {next: (response: any) => {
-          console.log(response);
-        }, error: (error: any) => {
-          console.log(error);
-      }});
-
-      /*if(this.login.username === 'etumax' && this.login.password === 'Inicio.2026') {
-        Swal.fire({
-          title: 'Login',
-          text: `Bienvenido al sistema ¡${this.login.username}!`,
-          icon: 'success'
-        }).then(result => {
-          if(result.isConfirmed) {
-            this.router.navigate(['/']);
+        {
+          next: (response: any) => {
+            if (response.success) {
+              this.authService.saveToken(response.data.token);
+              const payload = this.authService.getPayload(response.data.token);
+              this.authService.saveUser(payload);
+              Swal.fire({
+                title: 'Login',
+                text: `Bienvenido al sistema ¡${this.login.username}!`,
+                icon: 'success'
+              }).then(result => {
+                if (result.isConfirmed) {
+                  this.router.navigate(['/']);
+                }
+              });
+            }
+          }, error: (response: any) => {
+            Swal.fire({
+              title: 'Login failed',
+              text: response?.error?.message || 'Error de credenciales',
+              icon: 'error'
+            })
           }
         });
-      } else {
-        Swal.fire({
-          title: 'Login failed',
-          text: `Username o Password incorrectos, revisar sus credenciales`,
-          icon: 'error'
-        })
-      }*/
     }
   }
 
