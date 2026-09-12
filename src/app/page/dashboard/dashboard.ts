@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -8,9 +8,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import Swal from 'sweetalert2';
-import { UserService } from '../../services/user-service';
-import { User } from '../../auth/model/user.model';
-import { last } from 'rxjs';
 import { TechnicalCareer } from '../../auth/model/technical-career.model';
 import { TechnicalCareerService } from '../../services/technical-career-service';
 

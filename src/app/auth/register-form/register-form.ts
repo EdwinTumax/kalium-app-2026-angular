@@ -5,8 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { User } from '../model/user.model';
 import { Router } from '@angular/router';
+import { User } from '../../features/users/models/user.model';
 
 @Component({
   selector: 'app-register-form',

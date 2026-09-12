@@ -9,7 +9,8 @@ export const routes: Routes = [
         component: Layout,
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: 'dashboard', loadComponent: () => import('./page/dashboard/dashboard').then((c) => c.Dashboard) }
+            { path: 'dashboard', loadComponent: () => import('./page/dashboard/dashboard').then((c) => c.Dashboard) },
+            { path: 'users', loadComponent: () => import('./features/users/components/user-list').then((u) => u.UserList)}
         ]
     },
     {
