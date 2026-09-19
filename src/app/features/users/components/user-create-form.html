@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>
+    {{title}}
+</h2>
+<mat-dialog-content>
+    <form [formGroup]="formUserGroup">
+        <div class="form-input-container">
+            <mat-form-field>
+                <input formControlName="lastName" matInput placeholder="Apellidos">
+            </mat-form-field>
+        </div>
+        <div class="form-input-container">
+            <mat-form-field>
+                <input formControlName="firstName" matInput placeholder="Nombres">
+            </mat-form-field>
+        </div>
+        <div class="form-input-container">
+            <mat-form-field>
+                <input formControlName="username" matInput placeholder="Username">
+            </mat-form-field>
+        </div>
+        <div class="form-input-container">
+            <mat-form-field>
+                <input formControlName="email" matInput placeholder="Correo electronico">
+            </mat-form-field>
+        </div>
+        <div class="form-input-container">
+            <mat-form-field>
+                <input formControlName="phoneNumber" matInput placeholder="Numero de telefono">
+            </mat-form-field>
+        </div>
+        <div class="form-input-container">
+            <mat-form-field>
+                <input disable type="password" formControlName="password" matInput placeholder="Contraseña">
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button color="primary" (click)="onSave()">
+        <mat-icon>save</mat-icon>Guardar
+    </button>
+    <button mat-button color="primary" (click)="onCancel()">
+        <mat-icon>cancel</mat-icon>Cancelar
+    </button>
+</mat-dialog-actions>

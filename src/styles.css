@@ -110,3 +110,48 @@
     flex-direction: column;
     gap: 16px;
 }
+
+.usuarios-header {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    width: 100%;
+    padding: 0 16px;
+}
+
+.busqueda {
+    display: flex;
+    align-items: center;
+}
+
+.acciones {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.acciones button {
+    margin-left: 20px;
+}
+
+.form-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input-container>* {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center-column {
+  text-align: center !important;
+}
+
+.mat-cell:nth-child(1),
+mat-header-cell:nth-child(1) {
+  flex: 0 0 6%;
+}
