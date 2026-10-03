@@ -30,4 +30,10 @@ export class Sidenav {
     }
   }
 
+  roleView() {
+    if(this.authService.isAuthenticated()) {
+      this.router.navigate(['/roles'])
+    }
+  }
+
 }
