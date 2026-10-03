@@ -35,7 +35,6 @@ export class UserCreateForm implements OnInit {
   constructor(private formDialogUser: MatDialogRef<UserCreateForm>,
     private formBuilder: FormBuilder,
     private userServie: UserService, @Inject(MAT_DIALOG_DATA) public data: any) {
-    console.log(data);
     this.formUserGroup = this.formBuilder.group({
       username: [data != null ? data.userName : 'test', Validators.required],
       firstName: [data != null ? data.firstName : 'Test', Validators.required],
