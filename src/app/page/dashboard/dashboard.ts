@@ -50,6 +50,7 @@ export class Dashboard implements OnInit {
     // async & await
     try {
       this.careers = await this.technicalCareersService.getTechnicalCareers();
+      console.log(this.careers);
     } catch (error) {
       Swal.fire({
         icon: "error",
