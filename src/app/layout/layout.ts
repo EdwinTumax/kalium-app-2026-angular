@@ -13,11 +13,15 @@ import { MatDivider } from '@angular/material/divider';
   selector: 'app-layout',
   imports: [
     CommonModule,
+    Menu,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     RouterModule,
+    Sidenav,
+    MatDivider
+
   ],
   templateUrl: './layout.html',
   styles: ``,
