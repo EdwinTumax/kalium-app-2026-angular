@@ -31,6 +31,7 @@ export class UserCreateForm implements OnInit {
   public formUserGroup: FormGroup;
   user: User = new User();
   title: string = 'Agregar'
+  isEditMode = false;
 
   constructor(private formDialogUser: MatDialogRef<UserCreateForm>,
     private formBuilder: FormBuilder,

@@ -53,6 +53,22 @@ export class UserList implements OnInit {
     })
   }
 
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  clearFilter(input: HTMLInputElement): void {
+    input.value = '';
+    this.dataSource.filter = '';
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   getUserData(data: any) {
     const dataUsers: User[] = [];
     let userList = data;
@@ -99,7 +115,7 @@ export class UserList implements OnInit {
             text: "El registro fue eliminado",
             icon: "success"
           }).then(result => {
-            if(result.isConfirmed) {
+            if (result.isConfirmed) {
               this.getUsers();
             }
           });

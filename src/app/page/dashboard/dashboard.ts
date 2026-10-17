@@ -61,6 +61,30 @@ export class Dashboard implements OnInit {
     }
   }
 
+   async shareCareer(career: any): Promise<void> {
+    const shareData = {
+      title: career.name,
+      text: `${career.name} - ${career.subTitle ?? ''}`,
+      url: window.location.href
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(`${shareData.text}\n${shareData.url}`);
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name !== 'AbortError') {
+        console.error('No fue posible compartir la carrera:', error);
+      }
+    }
+  }
+
+  assignCareer(career: any): void {
+    console.log('Carrera seleccionada:', career);
+  }
+
 }
 
 
