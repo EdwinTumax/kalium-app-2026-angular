@@ -13,6 +13,7 @@ import { Role } from '../models/role.model';
 import { RoleService } from '../../../services/role-service';
 import { RoleCreateForm } from './role-create-form';
 import Swal from 'sweetalert2';
+import { CdkVirtualScrollableElement } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-role-list',
@@ -26,8 +27,9 @@ import Swal from 'sweetalert2';
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,
-    MatDialogModule
-  ],
+    MatDialogModule,
+    CdkVirtualScrollableElement
+],
   templateUrl: './role-list.html',
   styles: ``,
 })
@@ -46,6 +48,23 @@ export class RoleList implements OnInit {
   ngOnInit(): void {
     this.getRoles();
   }
+  
+  applyFilter(event: Event) : void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if(this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  clearFilter(input: HTMLInputElement) : void {
+    input.value = '';
+    this.dataSource.filter = '';
+    if(this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 
   getRoles() {
     this.roleService.getRoles().subscribe(roles => {

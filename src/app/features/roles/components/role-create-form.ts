@@ -32,6 +32,7 @@ export class RoleCreateForm implements OnInit {
   public formRoleGroup: FormGroup;
   role: Role = new Role();
   title: string = 'Agregar'
+  isEditMode = false;
 
   constructor(private formDialogRole: MatDialogRef<RoleCreateForm>,
     private formBuilder: FormBuilder,

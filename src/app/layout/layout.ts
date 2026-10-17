@@ -34,4 +34,8 @@ export class Layout {
     this.isSidenavOpen.update(v => !v);
   }
 
+  closeSidenav() {
+    this.isSidenavOpen.set(false);
+  }
+
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -20,20 +20,29 @@ import { AuthService } from '../../services/auth-service';
 })
 export class Sidenav {
 
+  @Output() closeSidenav = new EventEmitter<void>();
+
   constructor(private router: Router, public authService: AuthService) {
 
   }
 
   userView() {
+    this.closeSidenav.emit();
     if(this.authService.isAuthenticated()) {
       this.router.navigate(['/users']);
     }
   }
 
   roleView() {
+    this.closeSidenav.emit();
     if(this.authService.isAuthenticated()) {
       this.router.navigate(['/roles'])
     }
+  }
+
+  dashboardView() {
+    this.closeSidenav.emit();
+    this.router.navigate(['/dashboard'])
   }
 
 }
