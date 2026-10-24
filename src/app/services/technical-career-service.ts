@@ -1,47 +1,24 @@
 import { Injectable } from '@angular/core';
 import { TechnicalCareer } from '../auth/model/technical-career.model';
+import { environment } from '../../environments/environment.prod';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TechnicalCareerService {
-  getTechnicalCareers(): Promise<TechnicalCareer[]> {
-    return new Promise((resolve,reject) => {
+  host = environment.BASE_URL_KMAN;
+  port = environment.PORT_KMAN;
+  path: string = 'kalum-management/v1'
 
-      setTimeout(() => {
-        //reject('Hubo un error en el sistema al momento de consultar las carreras ténicas');
-        resolve([
-          {
-            careerId: '1',
-            name: 'Desarrollo de aplicaciones empresariales con .NET Core',
-            image: 'images/tics.jpg',
-            description: 'Curso de desarrollo de software orientado a la arquitectura <span class="text-color-kalum"> DOTNET Core </span> para desarrollos empresariales',
-            subTitle: 'Tecnologico Kalum'
-          },
-          {
-            careerId: '2',
-            name: 'Desarrollo de aplicciones moviles con Android',
-            image: 'images/tics.jpg',
-            description: 'Curso de desarrollo de software orientado a  <span class="text-color-kalum"> Aplicaciones móviles </span> con Android para desarrollos empresariales',
-            subTitle: 'Tecnologico Kalum'
+  constructor(private httpClient: HttpClient) {
 
-          },
-          {
-            careerId: '3',
-            name: 'Desarrollo de aplicaciones web con React',
-            image: 'images/tics.jpg',
-            description: 'Curso de desarrollo de software orientado a la arquitectura <span class="text-color-kalum"> DOTNET Core </span> para desarrollos empresariales',
-            subTitle: 'Tecnologico Kalum'
-          },
-          {
-            careerId: '4',
-            name: 'Desarrollo de aplicciones Web con Php',
-            image: 'images/tics.jpg',
-            description: 'Curso de desarrollo de software orientado a la arquitectura <span class="text-color-kalum"> DOTNET Core </span> para desarrollos empresariales',
-            subTitle: 'Tecnologico Kalum'
-          }
-        ]);
-      }, 2000);
-    });
   }
+
+
+  getTechnicalCareers(): Observable<any> {
+    return this.httpClient.get<any>(`${this.host}:${this.port}/${this.path}/technical-careers`);
+  }
+
 }

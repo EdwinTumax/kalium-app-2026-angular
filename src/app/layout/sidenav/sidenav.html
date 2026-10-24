@@ -7,21 +7,21 @@
         </div>
     </mat-list-item>
 
-    <mat-list-item>
+    <mat-list-item (click)="admissionExamView()">
         <div class="menu-item">
             <mat-icon>calendar_month</mat-icon>
             <span class="menu-text">Examenes admisión</span>
         </div>
     </mat-list-item>
 
-    <mat-list-item>
+    <mat-list-item *ngIf="authService.hasRole('ROLE_STUDENT')">
         <div class="menu-item">
             <mat-icon>credit_card</mat-icon>
             <span class="menu-text">Cuenta corriente</span>
         </div>
     </mat-list-item>
 
-    <mat-list-item>
+    <mat-list-item *ngIf="authService.hasRole('ROLE_CANDIDATE')">
         <div class="menu-item">
             <mat-icon>event_available</mat-icon>
             <span class="menu-text">Resultado Examen</span>
@@ -29,14 +29,14 @@
 
     </mat-list-item>
 
-    <mat-list-item (click)="userView()">
+    <mat-list-item *ngIf="authService.hasRole('ROLE_USER')" (click)="userView()">
         <div class="menu-item">
             <mat-icon>people</mat-icon>
             <span class="menu-text">Usuarios</span>
         </div>
     </mat-list-item>
 
-    <mat-list-item (click)="roleView()">
+    <mat-list-item *ngIf="authService.hasRole('ROLE_USER')" (click)="roleView()">
         <div class="menu-item">
             <mat-icon>security</mat-icon>
             <span class="menu-text">Roles</span>

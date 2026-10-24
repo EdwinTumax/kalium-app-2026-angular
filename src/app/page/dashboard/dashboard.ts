@@ -35,21 +35,11 @@ export class Dashboard implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    //Promise
-    /*this.technicalCareersService.getTechnicalCareers().then((response) => {
-      this.careers = response;
-    }).catch(error => {
-      Swal.fire({
-        icon: "error",
-        title: "Carreras Técnicas",
-        text: error,
-        footer: "<a href=\"#\">Why do I have this issue?</a>"
-      })
-    });*/
-
-    // async & await
     try {
-      this.careers = await this.technicalCareersService.getTechnicalCareers();
+      this.technicalCareersService.getTechnicalCareers().subscribe((response) => {
+        console.log(response);
+        this.careers = response.data;
+      });
     } catch (error) {
       Swal.fire({
         icon: "error",

@@ -13,7 +13,6 @@ import { Role } from '../models/role.model';
 import { RoleService } from '../../../services/role-service';
 import { RoleCreateForm } from './role-create-form';
 import Swal from 'sweetalert2';
-import { CdkVirtualScrollableElement } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-role-list',
@@ -28,7 +27,6 @@ import { CdkVirtualScrollableElement } from '@angular/cdk/scrolling';
     MatIconModule,
     MatPaginatorModule,
     MatDialogModule,
-    CdkVirtualScrollableElement
 ],
   templateUrl: './role-list.html',
   styles: ``,

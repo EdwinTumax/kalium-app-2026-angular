@@ -11,6 +11,7 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', loadComponent: () => import('./page/dashboard/dashboard').then((c) => c.Dashboard) },
+            { path: 'admissionExam', loadComponent: () => import('./features/admission-exam/components/admision-exam').then((ae) => ae.AdmisionExam)},
             { path: 'users', loadComponent: () => import('./features/users/components/user-list').then((u) => u.UserList), canActivate: [AuthGuard]},
             { path: 'roles', loadComponent: () => import('./features/roles/components/role-list').then((r) => r.RoleList), canActivate: [AuthGuard]}
         ]

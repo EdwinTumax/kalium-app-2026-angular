@@ -26,6 +26,11 @@ export class Sidenav {
 
   }
 
+  admissionExamView() {
+    this.closeSidenav.emit();
+    this.router.navigate(['/admissionExam'])
+  }
+
   userView() {
     this.closeSidenav.emit();
     if(this.authService.isAuthenticated()) {
