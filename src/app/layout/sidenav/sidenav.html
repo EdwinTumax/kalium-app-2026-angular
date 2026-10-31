@@ -29,14 +29,14 @@
 
     </mat-list-item>
 
-    <mat-list-item *ngIf="authService.hasRole('ROLE_USER')" (click)="userView()">
+    <mat-list-item *ngIf="authService.isAuthenticated() && authService.hasRole('ROLE_USER')" (click)="userView()">
         <div class="menu-item">
             <mat-icon>people</mat-icon>
             <span class="menu-text">Usuarios</span>
         </div>
     </mat-list-item>
 
-    <mat-list-item *ngIf="authService.hasRole('ROLE_USER')" (click)="roleView()">
+    <mat-list-item *ngIf="authService.isAuthenticated() && authService.hasRole('ROLE_USER')" (click)="roleView()">
         <div class="menu-item">
             <mat-icon>security</mat-icon>
             <span class="menu-text">Roles</span>

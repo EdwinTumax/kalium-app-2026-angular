@@ -55,8 +55,8 @@ export class UserCreateForm implements OnInit {
 
   onSave() {
 
-    this.user.firstname = this.formUserGroup?.get('firstName')?.value;
-    this.user.lastname = this.formUserGroup?.get('lastName')?.value;
+    this.user.firstName = this.formUserGroup?.get('firstName')?.value;
+    this.user.lastName = this.formUserGroup?.get('lastName')?.value;
     this.user.username = this.formUserGroup?.get('username')?.value;
     this.user.email = this.formUserGroup?.get('email')?.value;
     this.user.phoneNumber = this.formUserGroup?.get('phoneNumber')?.value;

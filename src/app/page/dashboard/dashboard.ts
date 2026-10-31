@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import Swal from 'sweetalert2';
 import { TechnicalCareer } from '../../auth/model/technical-career.model';
 import { TechnicalCareerService } from '../../services/technical-career-service';
+import { AuthService } from '../../services/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,7 +32,7 @@ import { TechnicalCareerService } from '../../services/technical-career-service'
 export class Dashboard implements OnInit {
   careers: TechnicalCareer[] = [];
 
-  constructor(private technicalCareersService: TechnicalCareerService) {
+  constructor(private technicalCareersService: TechnicalCareerService, private authService: AuthService, private router: Router) {
 
   }
 
@@ -72,6 +74,16 @@ export class Dashboard implements OnInit {
   }
 
   assignCareer(career: any): void {
+    if(!this.authService.isAuthenticated()) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Asignación del curso',
+        text: "Vemos que no has iniciado sesión o no tienes una cuenta creada, agradecemos que puedas iniciar o crear tu cuenta en la siguiente ventana",
+        footer: '<a href="#">Kalum v1.0.0</a>'
+      }).then(response => {
+        this.router.navigate(['/login/guest'])
+      });
+    }
     console.log('Carrera seleccionada:', career);
   }
 

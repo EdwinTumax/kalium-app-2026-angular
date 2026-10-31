@@ -45,6 +45,11 @@ export class AuthService {
     return this.http.post(`${this.host}:${this.port}/kalum-auth/v1/account/login`,login, {headers: httpHeaders});
   }
 
+  accountCreate(user: User) {
+    const httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
+    return this.http.post(`${this.host}:${this.port}/kalum-auth/v1/account/create`, user, {headers: httpHeaders});
+  }
+
   saveToken(token: string) : void {
     this._token = token;
     localStorage.setItem('token',token);
